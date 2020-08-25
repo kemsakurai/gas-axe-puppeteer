@@ -1,41 +1,43 @@
 {
-  "name": "gas-clasp-starter",
-  "version": "1.2.1",
+  "name": "gas-axe-puppeteer-firebase-functions-client",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix src/**/*.ts",
     "test": "jest",
+    "setup": "rm -f .clasp.json && clasp create --type sheets --title 'gas-axePuppeteerFirebaseFunctionsClient' --rootDir ./dist",
     "build": "npm run lint && npm run test && rimraf dist && webpack && cpx src/appsscript.json dist && cpx \"src/**/*.html\" dist",
+    "setup:use-id": "clasp setting scriptId",
     "push": "npm run build && clasp push"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/howdy39/gas-clasp-starter.git"
+    "url": "git+https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client.git"
   },
   "keywords": [
     "gas",
     "google-apps-script",
     "clasp"
   ],
-  "author": "howdy39",
+  "author": "K.Sakurai",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/howdy39/gas-clasp-starter/issues"
+    "url": "https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client/issues"
   },
-  "homepage": "https://github.com/howdy39/gas-clasp-starter#readme",
+  "homepage": "https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client#readme",
   "devDependencies": {
     "@types/google-apps-script": "1.0.11",
     "@types/jest": "25.1.4",
-    "@typescript-eslint/eslint-plugin": "2.23.0",
-    "@typescript-eslint/parser": "2.23.0",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
     "cpx": "1.5.0",
-    "eslint": "6.8.0",
-    "eslint-config-prettier": "6.10.0",
-    "eslint-plugin-prettier": "3.1.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "gas-webpack-plugin": "1.0.2",
     "jest": "25.1.0",
-    "prettier": "1.19.1",
+    "prettier": "^1.19.1",
     "rimraf": "3.0.2",
     "ts-jest": "25.2.1",
     "ts-loader": "6.2.1",
