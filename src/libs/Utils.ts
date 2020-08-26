@@ -46,4 +46,26 @@ export default class Utils {
   public static getRecordsSheetName(): string {
     return "Records";
   }
+
+  /**
+   * isValidURL
+   * @param str
+   */
+  public static isValidURL(str: string): boolean {
+    const pattern = new RegExp(
+      "^((https?:)?\\/\\/)?" + // protocol
+      "(?:\\S+(?::\\S*)?@)?" + // authentication
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locater
+    if (!pattern.test(str)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

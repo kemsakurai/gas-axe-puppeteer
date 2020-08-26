@@ -1,10 +1,10 @@
 import Utils from "../libs/Utils";
 
-export let initialize = (): void => {
+export const initialize = (): void => {
   console.info("initialize start");
   const recordSheetName: string = Utils.getRecordsSheetName();
   let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(
-      recordSheetName
+    recordSheetName
   );
   if (!sheet) {
     sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet();
