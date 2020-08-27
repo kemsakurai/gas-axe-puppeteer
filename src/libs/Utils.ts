@@ -33,6 +33,37 @@ export default class Utils {
     return PropertiesService.getScriptProperties().getProperty("END_POINT_URL");
   }
   /**
+   * getFirebaseFunctionsKey
+   */
+  public static getFirebaseFunctionsKey(): string {
+    return PropertiesService.getScriptProperties().getProperty(
+      "FIREBASE_FUNCTIONS_KEY"
+    );
+  }
+  /**
+   * setFirebaseFunctionsKey
+   * @param key
+   */
+  public static setFirebaseFunctionsKey(key: string): void {
+    PropertiesService.getScriptProperties().setProperty(
+      "FIREBASE_FUNCTIONS_KEY",
+      key
+    );
+  }
+  /**
+   * getTargetURL
+   */
+  public static getTargetURL(): string {
+    return PropertiesService.getScriptProperties().getProperty("TARGET_URL");
+  }
+  /**
+   * setTargetURL
+   * @param key
+   */
+  public static setTargetURL(key: string): void {
+    PropertiesService.getScriptProperties().setProperty("TARGET_URL", key);
+  }
+  /**
    * checkNotEmpty
    */
   public static checkNotEmpty(value: string, message: string): void {

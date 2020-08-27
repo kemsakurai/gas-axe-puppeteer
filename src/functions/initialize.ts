@@ -12,6 +12,8 @@ export const initialize = (): void => {
     const range = sheet.getRange("A1:H1");
     range.setBackground("yellow");
     const headers: string[] = [];
+    headers.push("TimeStamp");
+    headers.push("Url");
     headers.push("Id");
     headers.push("Impact");
     headers.push("Tags");

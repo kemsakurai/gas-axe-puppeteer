@@ -1,9 +1,15 @@
 import Utils from "../libs/Utils";
 import i18n from "../libs/i18n";
 
-function isPromptCloseOrEmptyInput(axePupeteetEndPointURL: string, response: GoogleAppsScript.Base.PromptResponse, ui: GoogleAppsScript.Base.Ui) {
-  return axePupeteetEndPointURL == "" ||
-      response.getSelectedButton() == ui.Button.CLOSE;
+function isPromptCloseOrEmptyInput(
+  axePupeteetEndPointURL: string,
+  response: GoogleAppsScript.Base.PromptResponse,
+  ui: GoogleAppsScript.Base.Ui
+): boolean {
+  return (
+    axePupeteetEndPointURL == "" ||
+    response.getSelectedButton() == ui.Button.CLOSE
+  );
 }
 
 export const setURL = (): void => {
@@ -21,7 +27,7 @@ export const setURL = (): void => {
   response = ui.prompt(i18n.t("showTargetUrl"));
   const targetUrl = response.getResponseText();
 
-  if (isPromptCloseOrEmptyInput(targetUrl, response,ui)) {
+  if (isPromptCloseOrEmptyInput(targetUrl, response, ui)) {
     return;
   }
 
