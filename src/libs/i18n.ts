@@ -38,7 +38,11 @@ export default class I18n {
     const lang = Session.getActiveUserLocale();
     const message = Translations.instance.get(lang, key);
     if (typeof message === "undefined") {
-      return Translations.instance.get("ja", key);
+      const failoverMessage = Translations.instance.get("ja", key);
+      if (typeof failoverMessage === "undefined") {
+        throw new Error("Message undefined.. key = " + key);
+      }
+      return failoverMessage;
     }
     return message;
   }

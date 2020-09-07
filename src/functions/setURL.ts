@@ -14,9 +14,8 @@ function isPromptCloseOrEmptyInput(
 
 export const setURL = (): void => {
   const ui = SpreadsheetApp.getUi();
-  let response = ui.prompt(i18n.t("showAxePupeteetEndPointURL"));
+  let response = ui.prompt(i18n.t("setAxePupeteetEndPointURL"));
   const axePupeteetEndPointURL = response.getResponseText();
-
   if (isPromptCloseOrEmptyInput(axePupeteetEndPointURL, response, ui)) {
     return;
   }

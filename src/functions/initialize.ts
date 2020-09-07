@@ -9,7 +9,7 @@ export const initialize = (): void => {
   if (!sheet) {
     sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet();
     sheet.setName(recordSheetName);
-    const range = sheet.getRange("A1:H1");
+    const range = sheet.getRange("A1:J1");
     range.setBackground("yellow");
     const headers: string[] = [];
     headers.push("TimeStamp");

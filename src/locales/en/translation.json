@@ -1,4 +1,11 @@
 {
   "initialSetting": "Initial setting",
-  "gettingStart": "Getting start"
+  "gettingStart": "Getting start",
+  "createConfigSheets": "Create config sheets",
+  "settingURL": "Setting URL",
+  "execution": "Execution",
+  "scheduleExecution": "Schedule Execution",
+  "setAxePupeteetEndPointURL": "Set Axe Pupeteet End Point URL",
+  "noticeUnValidURL": "The URL format is invalid.",
+  "showSetURL": "The specified URL has been set."
 }
