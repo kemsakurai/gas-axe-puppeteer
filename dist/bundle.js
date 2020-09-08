@@ -4,6 +4,8 @@ function initialize() {
 }
 function setURL() {
 }
+function runAxePuppeteer() {
+}
 function createSchedule() {
 }
 function updateSchedule() {
@@ -188,6 +190,83 @@ const initialize = () => {
 
 /***/ }),
 
+/***/ "./src/functions/runAxePuppeteer.ts":
+/*!******************************************!*\
+  !*** ./src/functions/runAxePuppeteer.ts ***!
+  \******************************************/
+/*! exports provided: runAxePuppeteer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "runAxePuppeteer", function() { return runAxePuppeteer; });
+/* harmony import */ var _libs_Utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../libs/Utils */ "./src/libs/Utils.ts");
+
+class Row {
+    constructor(url, timestamp, id, impact, tags, description, help, helpUrl, nodeHtml, nodeFailureSummary) {
+        this.url = url;
+        this.timestamp = timestamp;
+        this.id = id;
+        this.impact = impact;
+        this.tags = tags;
+        this.description = description;
+        this.help = help;
+        this.helpUrl = helpUrl;
+        this.nodeHtml = nodeHtml;
+        this.nodeFailureSummary = nodeFailureSummary;
+    }
+    toArray() {
+        return [
+            this.url,
+            this.timestamp,
+            this.id,
+            this.impact,
+            this.tags.join(","),
+            this.description,
+            this.help,
+            this.helpUrl,
+            this.nodeHtml,
+            this.nodeFailureSummary
+        ];
+    }
+}
+const runAxePuppeteer = () => {
+    console.info("runAxePuppeteer start");
+    // Get Value from property
+    const key = _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getFirebaseFunctionsKey();
+    const endPointURL = _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getEndPointURL();
+    const targetURL = _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getTargetURL();
+    // create KEY
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    const headers = {
+        Authorization: "Bearer " + key
+    };
+    // create option
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    const options = {
+        method: "get",
+        contentType: "application/json",
+        headers: headers
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const json = _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].fetchAsJson(endPointURL + "?url=" + targetURL, options);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const rows = [];
+    for (const violation of json["violations"]) {
+        for (const node of violation["nodes"]) {
+            const row = new Row(json["url"], json["timestamp"], violation["id"], violation["impact"], violation["tags"], violation["description"], violation["help"], violation["helpUrl"], node["html"], node["failureSummary"]);
+            rows.push(row.toArray());
+        }
+    }
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(_libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getRecordsSheetName());
+    const range = sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, rows[0].length);
+    range.setValues(rows);
+    console.info("runAxePuppeteer end");
+};
+
+
+/***/ }),
+
 /***/ "./src/functions/setURL.ts":
 /*!*********************************!*\
   !*** ./src/functions/setURL.ts ***!
@@ -217,6 +296,7 @@ const setURL = () => {
         ui.alert(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("noticeUnValidURL"));
         return;
     }
+    _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].setEndPointURL(axePupeteetEndPointURL);
     response = ui.prompt(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("showTargetUrl"));
     const targetUrl = response.getResponseText();
     if (isPromptCloseOrEmptyInput(targetUrl, response, ui)) {
@@ -226,6 +306,7 @@ const setURL = () => {
         ui.alert(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("noticeUnValidURL"));
         return;
     }
+    _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].setTargetURL(targetUrl);
     ui.alert(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("showSetURL"));
 };
 
@@ -376,7 +457,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _functions_initialize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functions/initialize */ "./src/functions/initialize.ts");
 /* harmony import */ var _functions_updateSchedule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./functions/updateSchedule */ "./src/functions/updateSchedule.ts");
 /* harmony import */ var _functions_createSchedule__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./functions/createSchedule */ "./src/functions/createSchedule.ts");
-/* harmony import */ var _functions_setURL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/setURL */ "./src/functions/setURL.ts");
+/* harmony import */ var _functions_runAxePuppeteer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/runAxePuppeteer */ "./src/functions/runAxePuppeteer.ts");
+/* harmony import */ var _functions_setURL__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./functions/setURL */ "./src/functions/setURL.ts");
+
 
 
 
@@ -395,7 +478,8 @@ function onOpen() {
 }
 global.onOpen = onOpen;
 global.initialize = _functions_initialize__WEBPACK_IMPORTED_MODULE_1__["initialize"];
-global.setURL = _functions_setURL__WEBPACK_IMPORTED_MODULE_4__["setURL"];
+global.setURL = _functions_setURL__WEBPACK_IMPORTED_MODULE_5__["setURL"];
+global.runAxePuppeteer = _functions_runAxePuppeteer__WEBPACK_IMPORTED_MODULE_4__["runAxePuppeteer"];
 global.createSchedule = _functions_createSchedule__WEBPACK_IMPORTED_MODULE_3__["createSchedule"];
 global.updateSchedule = _functions_updateSchedule__WEBPACK_IMPORTED_MODULE_2__["updateSchedule"];
 
@@ -572,10 +656,10 @@ class I18n {
 /*!*****************************************!*\
   !*** ./src/locales/en/translation.json ***!
   \*****************************************/
-/*! exports provided: initialSetting, gettingStart, createConfigSheets, settingURL, execution, scheduleExecution, setAxePupeteetEndPointURL, noticeUnValidURL, showSetURL, default */
+/*! exports provided: initialSetting, gettingStart, createConfigSheets, settingURL, execution, scheduleExecution, setAxePupeteetEndPointURL, noticeUnValidURL, showSetURL, showTargetUrl, createSchedule, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"initialSetting\":\"Initial setting\",\"gettingStart\":\"Getting start\",\"createConfigSheets\":\"Create config sheets\",\"settingURL\":\"Setting URL\",\"execution\":\"Execution\",\"scheduleExecution\":\"Schedule Execution\",\"setAxePupeteetEndPointURL\":\"Set Axe Pupeteet End Point URL\",\"noticeUnValidURL\":\"The URL format is invalid.\",\"showSetURL\":\"The specified URL has been set.\"}");
+module.exports = JSON.parse("{\"initialSetting\":\"Initial setting\",\"gettingStart\":\"Getting start\",\"createConfigSheets\":\"Create config sheets\",\"settingURL\":\"Setting URL\",\"execution\":\"Execution\",\"scheduleExecution\":\"Schedule Execution\",\"setAxePupeteetEndPointURL\":\"Set Axe Pupeteet End Point URL\",\"noticeUnValidURL\":\"The URL format is invalid.\",\"showSetURL\":\"The specified URL has been set.\",\"showTargetUrl\":\"Please set the URL to be verified.\",\"createSchedule\":\"Create schedule\"}");
 
 /***/ }),
 
@@ -583,10 +667,10 @@ module.exports = JSON.parse("{\"initialSetting\":\"Initial setting\",\"gettingSt
 /*!*****************************************!*\
   !*** ./src/locales/ja/translation.json ***!
   \*****************************************/
-/*! exports provided: initialSetting, gettingStart, createConfigSheets, settingURL, execution, scheduleExecution, setAxePupeteetEndPointURL, noticeUnValidURL, showSetURL, default */
+/*! exports provided: initialSetting, gettingStart, createConfigSheets, settingURL, execution, scheduleExecution, setAxePupeteetEndPointURL, noticeUnValidURL, showSetURL, showTargetUrl, createSchedule, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"initialSetting\":\"設定\",\"gettingStart\":\"初期設定\",\"createConfigSheets\":\"設定シート作成\",\"settingURL\":\"URL設定\",\"execution\":\"実行\",\"scheduleExecution\":\"スケジュール実行\",\"setAxePupeteetEndPointURL\":\"Axe PuppeteerエンドポイントURLを設定してください\",\"noticeUnValidURL\":\"URLの形式が不正です。\",\"showSetURL\":\"指定したURLを設定しました。\"}");
+module.exports = JSON.parse("{\"initialSetting\":\"設定\",\"gettingStart\":\"初期設定\",\"createConfigSheets\":\"設定シート作成\",\"settingURL\":\"URL設定\",\"execution\":\"実行\",\"scheduleExecution\":\"スケジュール実行\",\"setAxePupeteetEndPointURL\":\"Axe PuppeteerエンドポイントURLを設定してください\",\"noticeUnValidURL\":\"URLの形式が不正です。\",\"showSetURL\":\"指定したURLを設定しました。\",\"showTargetUrl\":\"検証対象のURLを設定してください。\",\"createSchedule\":\"スケジュール作成\"}");
 
 /***/ })
 

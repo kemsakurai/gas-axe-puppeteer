@@ -23,6 +23,8 @@ export const setURL = (): void => {
     ui.alert(i18n.t("noticeUnValidURL"));
     return;
   }
+  Utils.setEndPointURL(axePupeteetEndPointURL);
+
   response = ui.prompt(i18n.t("showTargetUrl"));
   const targetUrl = response.getResponseText();
 
@@ -34,5 +36,6 @@ export const setURL = (): void => {
     ui.alert(i18n.t("noticeUnValidURL"));
     return;
   }
+  Utils.setTargetURL(targetUrl);
   ui.alert(i18n.t("showSetURL"));
 };

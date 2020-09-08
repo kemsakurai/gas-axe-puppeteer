@@ -2,6 +2,7 @@ import i18n from "./libs/i18n";
 import { initialize } from "./functions/initialize";
 import { updateSchedule } from "./functions/updateSchedule";
 import { createSchedule } from "./functions/createSchedule";
+import { runAxePuppeteer } from "./functions/runAxePuppeteer";
 import { setURL } from "./functions/setURL";
 
 function onOpen() {
@@ -22,6 +23,6 @@ declare let global: any;
 global.onOpen = onOpen;
 global.initialize = initialize;
 global.setURL = setURL;
+global.runAxePuppeteer = runAxePuppeteer;
 global.createSchedule = createSchedule;
 global.updateSchedule = updateSchedule;
-

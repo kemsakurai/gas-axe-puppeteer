@@ -7,5 +7,7 @@
   "scheduleExecution": "Schedule Execution",
   "setAxePupeteetEndPointURL": "Set Axe Pupeteet End Point URL",
   "noticeUnValidURL": "The URL format is invalid.",
-  "showSetURL": "The specified URL has been set."
+  "showSetURL": "The specified URL has been set.",
+  "showTargetUrl": "Please set the URL to be verified.",
+  "createSchedule": "Create schedule"
 }

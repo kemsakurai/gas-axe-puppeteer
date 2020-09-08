@@ -7,5 +7,7 @@
   "scheduleExecution": "スケジュール実行",
   "setAxePupeteetEndPointURL": "Axe PuppeteerエンドポイントURLを設定してください",
   "noticeUnValidURL": "URLの形式が不正です。",
-  "showSetURL": "指定したURLを設定しました。"
+  "showSetURL": "指定したURLを設定しました。",
+  "showTargetUrl": "検証対象のURLを設定してください。",
+  "createSchedule": "スケジュール作成"
 }

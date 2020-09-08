@@ -52,7 +52,7 @@ class Row {
   }
 }
 
-export const runAxePupperteer = (): void => {
+export const runAxePuppeteer = (): void => {
   console.info("runAxePuppeteer start");
 
   // Get Value from property
