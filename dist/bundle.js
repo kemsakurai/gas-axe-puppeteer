@@ -164,6 +164,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const initialize = () => {
     console.info("initialize start");
+    // Create records sheet
     const recordSheetName = _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getRecordsSheetName();
     let sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(recordSheetName);
     if (!sheet) {
@@ -183,6 +184,17 @@ const initialize = () => {
         headers.push("Node.html");
         headers.push("Node.failureSummary");
         range.setValues([headers]);
+    }
+    // Create aggregations sheet
+    const aggregationsSheetName = _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].getAggregationsSheetName();
+    sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(aggregationsSheetName);
+    if (!sheet) {
+        sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet();
+        sheet.setName(aggregationsSheetName);
+        sheet
+            .getRange("A1:A1")
+            .setFormula("=QUERY(Records!A:J,\"select A, B, count(B) where A <> '' group by A, B\",true)");
+        sheet.getRange("A1:C1").setBackground("yellow");
     }
     console.info("initialize end");
 };
@@ -254,7 +266,7 @@ const runAxePuppeteer = () => {
     const rows = [];
     for (const violation of json["violations"]) {
         for (const node of violation["nodes"]) {
-            const row = new Row(json["url"], json["timestamp"], violation["id"], violation["impact"], violation["tags"], violation["description"], violation["help"], violation["helpUrl"], node["html"], node["failureSummary"]);
+            const row = new Row(json["timestamp"], json["url"], violation["id"], violation["impact"], violation["tags"], violation["description"], violation["help"], violation["helpUrl"], node["html"], node["failureSummary"]);
             rows.push(row.toArray());
         }
     }
@@ -569,6 +581,12 @@ class Utils {
      */
     static getRecordsSheetName() {
         return "Records";
+    }
+    /**
+     * getAggregationsSheetName
+     */
+    static getAggregationsSheetName() {
+        return "Aggregations";
     }
     /**
      * isValidURL

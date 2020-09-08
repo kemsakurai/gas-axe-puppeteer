@@ -83,8 +83,8 @@ export const runAxePuppeteer = (): void => {
   for (const violation of json["violations"]) {
     for (const node of violation["nodes"]) {
       const row = new Row(
-        json["url"],
         json["timestamp"],
+        json["url"],
         violation["id"],
         violation["impact"],
         violation["tags"],

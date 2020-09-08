@@ -79,6 +79,13 @@ export default class Utils {
   }
 
   /**
+   * getAggregationsSheetName
+   */
+  public static getAggregationsSheetName(): string {
+    return "Aggregations";
+  }
+
+  /**
    * isValidURL
    * @param str
    */
