@@ -37,5 +37,14 @@ export const setURL = (): void => {
     return;
   }
   Utils.setTargetURL(targetUrl);
+
+  response = ui.prompt(i18n.t("showFirebaseFunctionsKey"));
+  const functinoKey = response.getResponseText();
+
+  if (isPromptCloseOrEmptyInput(functinoKey, response, ui)) {
+    return;
+  }
+  Utils.setFirebaseFunctionsKey(functinoKey);
+
   ui.alert(i18n.t("showSetURL"));
 };

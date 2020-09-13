@@ -44,12 +44,13 @@ export default class Utils {
    * setFirebaseFunctionsKey
    * @param key
    */
-  public static setFirebaseFunctionsKey(key: string): void {
+  public static setFirebaseFunctionsKey(value: string): void {
     PropertiesService.getScriptProperties().setProperty(
       "FIREBASE_FUNCTIONS_KEY",
-      key
+      value
     );
   }
+
   /**
    * getTargetURL
    */
@@ -60,8 +61,8 @@ export default class Utils {
    * setTargetURL
    * @param key
    */
-  public static setTargetURL(key: string): void {
-    PropertiesService.getScriptProperties().setProperty("TARGET_URL", key);
+  public static setTargetURL(value: string): void {
+    PropertiesService.getScriptProperties().setProperty("TARGET_URL", value);
   }
   /**
    * checkNotEmpty

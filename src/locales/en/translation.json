@@ -9,5 +9,6 @@
   "noticeUnValidURL": "The URL format is invalid.",
   "showSetURL": "The specified URL has been set.",
   "showTargetUrl": "Please set the URL to be verified.",
-  "createSchedule": "Create schedule"
+  "createSchedule": "Create schedule",
+  "showFirebaseFunctionsKey":"Enter the API Key for your Firebase function."
 }
