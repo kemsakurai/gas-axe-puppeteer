@@ -135,7 +135,7 @@ function updateSchedule() {
             ui.createMenu("gas-axePuppeteerFirebaseFunctionsClient").addSubMenu(ui.createMenu(_libs_i18n__WEBPACK_IMPORTED_MODULE_0__["default"].t("initialSetting")).addItem(_libs_i18n__WEBPACK_IMPORTED_MODULE_0__["default"].t("createConfigSheets"), "initialize").addItem(_libs_i18n__WEBPACK_IMPORTED_MODULE_0__["default"].t("settingURL"), "openUrlSettings")).addSeparator().addItem(_libs_i18n__WEBPACK_IMPORTED_MODULE_0__["default"].t("execution"), "runAxePuppeteer").addItem(_libs_i18n__WEBPACK_IMPORTED_MODULE_0__["default"].t("scheduleExecution"), "createSchedule").addToUi();
         }, openUrlSettings = () => {
             const html = HtmlService.createHtmlOutputFromFile("sidebar").setWidth(600).setHeight(600);
-            SpreadsheetApp.getUi().showModalDialog(html, "Url settings");
+            SpreadsheetApp.getUi().showModalDialog(html, _libs_i18n__WEBPACK_IMPORTED_MODULE_0__["default"].t("modal.title.urlSettings"));
         };
     },
     "./src/functions/runAxePuppeteer.ts": function(module, __webpack_exports__, __webpack_require__) {
@@ -343,21 +343,27 @@ function updateSchedule() {
             }
         }
         class I18n {
-            static t(key) {
-                const lang = Session.getActiveUserLocale(), message = Translations.instance.get(lang, key);
-                if (void 0 === message) {
-                    const failoverMessage = Translations.instance.get("ja", key);
-                    if (void 0 === failoverMessage) throw new Error("Message undefined.. key = " + key);
-                    return failoverMessage;
-                }
-                return message;
+            static t(key, locale, params) {
+                let lang;
+                lang = void 0 === locale ? Session.getActiveUserLocale() : locale;
+                let message = Translations.instance.get(lang, key);
+                if (void 0 === message && (message = Translations.instance.get("ja", key), void 0 === message)) throw new Error("Message undefined.. key = " + key);
+                return void 0 === params ? message : function(params) {
+                    const num = params.length;
+                    let oStr = params[0];
+                    for (let i = 1; i < num; i++) {
+                        const re = new RegExp("\\{" + (i - 1) + "\\}", "g");
+                        oStr = oStr.replace(re, params[i]);
+                    }
+                    return oStr;
+                }([ message, ...params ]);
             }
         }
     },
     "./src/locales/en/translation.json": function(module) {
-        module.exports = JSON.parse('{"initialSetting":"Initial setting","gettingStart":"Getting start","createConfigSheets":"Create config sheets","settingURL":"Setting URL","execution":"Execution","scheduleExecution":"Schedule Execution","setAxePupeteetEndPointURL":"Set Axe Pupeteet End Point URL","noticeUnValidURL":"The URL format is invalid.","showSetURL":"The specified URL has been set.","showTargetUrl":"Please set the URL to be verified.","createSchedule":"Create schedule","showFirebaseFunctionsKey":"Enter the API Key for your Firebase function."}');
+        module.exports = JSON.parse('{"initialSetting":"Initial setting","gettingStart":"Getting start","createConfigSheets":"Create config sheets","settingURL":"Setting URL","execution":"Execution","scheduleExecution":"Schedule Execution","setAxePupeteetEndPointURL":"Set Axe Pupeteet End Point URL","noticeUnValidURL":"The URL format is invalid.","showSetURL":"The specified URL has been set.","showTargetUrl":"Please set the URL to be verified.","createSchedule":"Create schedule","showFirebaseFunctionsKey":"Enter the API Key for your Firebase function.","message.required":"{0} is required","message.invalidPattern":"The format of {0} is invalid.","message.onSaveSuccess":"Saved the setting.","message.title.resultNotification":"Result notification","modal.title.urlSettings":"URL settings","button.close":"Close","button.save":"Save"}');
     },
     "./src/locales/ja/translation.json": function(module) {
-        module.exports = JSON.parse('{"initialSetting":"設定","gettingStart":"初期設定","createConfigSheets":"設定シート作成","settingURL":"URL設定","execution":"実行","scheduleExecution":"スケジュール実行","setAxePupeteetEndPointURL":"Axe PuppeteerエンドポイントURLを設定してください","noticeUnValidURL":"URLの形式が不正です。","showSetURL":"指定したURLを設定しました。","showTargetUrl":"検証対象のURLを設定してください。","createSchedule":"スケジュール作成","showFirebaseFunctionsKey":"Firebase function の API Key を入力してください。"}');
+        module.exports = JSON.parse('{"initialSetting":"設定","gettingStart":"初期設定","createConfigSheets":"設定シート作成","settingURL":"URL設定","execution":"実行","scheduleExecution":"スケジュール実行","setAxePupeteetEndPointURL":"Axe PuppeteerエンドポイントURLを設定してください","noticeUnValidURL":"URLの形式が不正です。","showSetURL":"指定したURLを設定しました。","showTargetUrl":"検証対象のURLを設定してください。","createSchedule":"スケジュール作成","showFirebaseFunctionsKey":"Firebase function の API Key を入力してください。","message.required":"{0} は必須です。","message.invalidPattern":"{0} の形式が不正です。","message.onSaveSuccess":"設定を保存しました。","message.title.resultNotification":"結果通知","modal.title.urlSettings":"URL設定","button.close":"閉じる","button.save":"保存する"}');
     }
 });

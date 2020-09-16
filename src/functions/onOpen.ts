@@ -20,5 +20,8 @@ export const openUrlSettings = () => {
   const html = HtmlService.createHtmlOutputFromFile("sidebar")
     .setWidth(600)
     .setHeight(600);
-  SpreadsheetApp.getUi().showModalDialog(html, "Url settings");
+  SpreadsheetApp.getUi().showModalDialog(
+    html,
+    i18n.t("modal.title.urlSettings")
+  );
 };

@@ -10,5 +10,12 @@
   "showSetURL": "指定したURLを設定しました。",
   "showTargetUrl": "検証対象のURLを設定してください。",
   "createSchedule": "スケジュール作成",
-  "showFirebaseFunctionsKey": "Firebase function の API Key を入力してください。"
+  "showFirebaseFunctionsKey": "Firebase function の API Key を入力してください。",
+  "message.required": "{0} は必須です。",
+  "message.invalidPattern": "{0} の形式が不正です。",
+  "message.onSaveSuccess": "設定を保存しました。",
+  "message.title.resultNotification": "結果通知",
+  "modal.title.urlSettings": "URL設定",
+  "button.close": "閉じる",
+  "button.save": "保存する"
 }

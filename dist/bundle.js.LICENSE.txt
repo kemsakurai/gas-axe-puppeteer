@@ -30,7 +30,7 @@
 
 /*! exports provided: getScriptProperties */
 
-/*! exports provided: initialSetting, gettingStart, createConfigSheets, settingURL, execution, scheduleExecution, setAxePupeteetEndPointURL, noticeUnValidURL, showSetURL, showTargetUrl, createSchedule, showFirebaseFunctionsKey, default */
+/*! exports provided: initialSetting, gettingStart, createConfigSheets, settingURL, execution, scheduleExecution, setAxePupeteetEndPointURL, noticeUnValidURL, showSetURL, showTargetUrl, createSchedule, showFirebaseFunctionsKey, message.required, message.invalidPattern, message.onSaveSuccess, message.title.resultNotification, modal.title.urlSettings, button.close, button.save, default */
 
 /*! exports provided: initialize */
 

@@ -10,5 +10,12 @@
   "showSetURL": "The specified URL has been set.",
   "showTargetUrl": "Please set the URL to be verified.",
   "createSchedule": "Create schedule",
-  "showFirebaseFunctionsKey":"Enter the API Key for your Firebase function."
+  "showFirebaseFunctionsKey":"Enter the API Key for your Firebase function.",
+  "message.required": "{0} is required",
+  "message.invalidPattern": "The format of {0} is invalid.",
+  "message.onSaveSuccess": "Saved the setting.",
+  "message.title.resultNotification": "Result notification",
+  "modal.title.urlSettings": "URL settings",
+  "button.close": "Close",
+  "button.save": "Save"
 }

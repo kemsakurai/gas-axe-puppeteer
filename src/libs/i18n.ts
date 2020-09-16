@@ -32,18 +32,35 @@ class Translations {
     return this._instance;
   }
 }
+const printf = function(params: string[]) {
+  const num = params.length;
+  let oStr = params[0];
+  for (let i = 1; i < num; i++) {
+    const pattern = "\\{" + (i - 1) + "\\}";
+    const re = new RegExp(pattern, "g");
+    oStr = oStr.replace(re, params[i]);
+  }
+  return oStr;
+};
 
 export default class I18n {
-  public static t(key: string): string {
-    const lang = Session.getActiveUserLocale();
-    const message = Translations.instance.get(lang, key);
+  public static t(key: string, locale?: string, params?: string[]): string {
+    let lang;
+    if (typeof locale === "undefined") {
+      lang = Session.getActiveUserLocale();
+    } else {
+      lang = locale;
+    }
+    let message = Translations.instance.get(lang, key);
     if (typeof message === "undefined") {
-      const failoverMessage = Translations.instance.get("ja", key);
-      if (typeof failoverMessage === "undefined") {
+      message = Translations.instance.get("ja", key);
+      if (typeof message === "undefined") {
         throw new Error("Message undefined.. key = " + key);
       }
-      return failoverMessage;
     }
-    return message;
+    if (typeof params === "undefined") {
+      return message;
+    }
+    return printf([message, ...params]);
   }
 }
