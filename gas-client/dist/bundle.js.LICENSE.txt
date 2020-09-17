@@ -20,8 +20,6 @@
 
 /*! ./functions/saveScriptProperties */
 
-/*! ./functions/setURL */
-
 /*! ./functions/updateSchedule */
 
 /*! exports provided: createSchedule */
@@ -39,8 +37,6 @@
 /*! exports provided: runAxePuppeteer */
 
 /*! exports provided: saveScriptProperties */
-
-/*! exports provided: setURL */
 
 /*! exports provided: updateSchedule */
 
@@ -62,10 +58,6 @@
 
 /*!*********************************!*\
   !*** ./src/functions/onOpen.ts ***!
-  \*********************************/
-
-/*!*********************************!*\
-  !*** ./src/functions/setURL.ts ***!
   \*********************************/
 
 /*!***********************************!*\

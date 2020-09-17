@@ -8,8 +8,6 @@ function saveScriptProperties() {
 }
 function initialize() {
 }
-function setURL() {
-}
 function runAxePuppeteer() {
 }
 function createSchedule() {
@@ -185,32 +183,6 @@ function updateSchedule() {
             result: "SUCCESS"
         });
     },
-    "./src/functions/setURL.ts": function(module, __webpack_exports__, __webpack_require__) {
-        "use strict";
-        __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "setURL", (function() {
-            return setURL;
-        }));
-        var _libs_Utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/libs/Utils.ts"), _libs_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/libs/i18n.ts");
-        function isPromptCloseOrEmptyInput(axePupeteetEndPointURL, response, ui) {
-            return "" == axePupeteetEndPointURL || response.getSelectedButton() == ui.Button.CLOSE;
-        }
-        const setURL = () => {
-            const ui = SpreadsheetApp.getUi();
-            let response = ui.prompt(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("setAxePupeteetEndPointURL"));
-            const axePupeteetEndPointURL = response.getResponseText();
-            if (isPromptCloseOrEmptyInput(axePupeteetEndPointURL, response, ui)) return;
-            if (!_libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].isValidURL(axePupeteetEndPointURL)) return void ui.alert(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("noticeUnValidURL"));
-            _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].setEndPointURL(axePupeteetEndPointURL), 
-            response = ui.prompt(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("showTargetUrl"));
-            const targetUrl = response.getResponseText();
-            if (isPromptCloseOrEmptyInput(targetUrl, response, ui)) return;
-            if (!_libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].isValidURL(targetUrl)) return void ui.alert(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("noticeUnValidURL"));
-            _libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].setTargetURL(targetUrl), response = ui.prompt(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("showFirebaseFunctionsKey"));
-            const functinoKey = response.getResponseText();
-            isPromptCloseOrEmptyInput(functinoKey, response, ui) || (_libs_Utils__WEBPACK_IMPORTED_MODULE_0__["default"].setFirebaseFunctionsKey(functinoKey), 
-            ui.alert(_libs_i18n__WEBPACK_IMPORTED_MODULE_1__["default"].t("showSetURL")));
-        };
-    },
     "./src/functions/updateSchedule.ts": function(module, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__), __webpack_require__.d(__webpack_exports__, "updateSchedule", (function() {
@@ -265,12 +237,12 @@ function updateSchedule() {
     "./src/index.ts": function(module, __webpack_exports__, __webpack_require__) {
         "use strict";
         __webpack_require__.r(__webpack_exports__), function(global) {
-            var _functions_onOpen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/functions/onOpen.ts"), _functions_getScriptsProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/functions/getScriptsProperties.ts"), _functions_saveScriptProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./src/functions/saveScriptProperties.ts"), _functions_initialize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./src/functions/initialize.ts"), _functions_updateSchedule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./src/functions/updateSchedule.ts"), _functions_createSchedule__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./src/functions/createSchedule.ts"), _functions_runAxePuppeteer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./src/functions/runAxePuppeteer.ts"), _functions_setURL__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("./src/functions/setURL.ts");
+            var _functions_onOpen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("./src/functions/onOpen.ts"), _functions_getScriptsProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("./src/functions/getScriptsProperties.ts"), _functions_saveScriptProperties__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("./src/functions/saveScriptProperties.ts"), _functions_initialize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("./src/functions/initialize.ts"), _functions_updateSchedule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("./src/functions/updateSchedule.ts"), _functions_createSchedule__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("./src/functions/createSchedule.ts"), _functions_runAxePuppeteer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("./src/functions/runAxePuppeteer.ts");
             global.onOpen = _functions_onOpen__WEBPACK_IMPORTED_MODULE_0__["onOpen"], global.openUrlSettings = _functions_onOpen__WEBPACK_IMPORTED_MODULE_0__["openUrlSettings"], 
             global.getScriptProperties = _functions_getScriptsProperties__WEBPACK_IMPORTED_MODULE_1__["getScriptProperties"], 
             global.saveScriptProperties = _functions_saveScriptProperties__WEBPACK_IMPORTED_MODULE_2__["saveScriptProperties"], 
             global.initialize = _functions_initialize__WEBPACK_IMPORTED_MODULE_3__["initialize"], 
-            global.setURL = _functions_setURL__WEBPACK_IMPORTED_MODULE_7__["setURL"], global.runAxePuppeteer = _functions_runAxePuppeteer__WEBPACK_IMPORTED_MODULE_6__["runAxePuppeteer"], 
+            global.runAxePuppeteer = _functions_runAxePuppeteer__WEBPACK_IMPORTED_MODULE_6__["runAxePuppeteer"], 
             global.createSchedule = _functions_createSchedule__WEBPACK_IMPORTED_MODULE_5__["createSchedule"], 
             global.updateSchedule = _functions_updateSchedule__WEBPACK_IMPORTED_MODULE_4__["updateSchedule"];
         }.call(this, __webpack_require__("./node_modules/webpack/buildin/global.js"));
