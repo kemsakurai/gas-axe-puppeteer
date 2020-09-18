@@ -1,7 +1,7 @@
 # axe-puppeteer-firebase-functions     
 
 A tool for accessibility checks using axe-puppeteer in Firebase functions.
-To record the check results, [kemsakurai/gas-axe-puppeteer-firebase-functions-client: axe-puppeteer-firebase-functions client made with gas](https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client).   
+To record the check results, [gas-axe-puppeteer/gas-client at master · kemsakurai/gas-axe-puppeteer](https://github.com/kemsakurai/gas-axe-puppeteer/tree/master/gas-client).   
 once you set up each tool, you can periodically record the results of accessibility checks in Google Sheets.
 
 
@@ -17,10 +17,12 @@ cd functions
 npm install
 ```
 
-* Set API Key
+* Set API Key    
 ```console
 firebase functions:config:set func.key="350cc344-abf6-4cad-b8e8-d3f9995a16ff" func.lang="ja"
 ```
+The default language setting is `en`. Depending on the setting, the output of the axe-puppeteer warning message will switch.    
+
 
 * Deploy    
 ```console
