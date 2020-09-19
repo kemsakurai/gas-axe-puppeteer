@@ -1,4 +1,4 @@
-# axe-puppeteer-firebase-functions     
+# gas-axe-puppeteer (cloud-functions)     
 
 A tool for accessibility checks using axe-puppeteer in Firebase functions.
 To record the check results, [gas-axe-puppeteer/gas-client at master · kemsakurai/gas-axe-puppeteer](https://github.com/kemsakurai/gas-axe-puppeteer/tree/master/gas-client).   

@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --fix src/**/*.ts",
     "test": "jest",
-    "setup": "rm -f .clasp.json && clasp create --type sheets --title 'gas-axePuppeteerFirebaseFunctionsClient' --rootDir ./dist",
+    "setup": "rm -f .clasp.json && clasp create --type sheets --title 'gas-axe-puppeteer' --rootDir ./dist",
     "build": "npm run lint && npm run test && rimraf dist && webpack && cpx src/appsscript.json dist && cpx \"src/**/*.html\" dist",
     "build:prod": "npm run lint && npm run test && rimraf dist && NODE_ENV=production webpack && cpx src/appsscript.json dist && cpx \"src/**/*.html\" dist",
     "setup:use-id": "clasp setting scriptId",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client.git"
+    "url": "git+https://github.com/kemsakurai/gas-axe-puppeteer.git"
   },
   "keywords": [
     "gas",
@@ -24,9 +24,9 @@
   "author": "K.Sakurai",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client/issues"
+    "url": "https://github.com/kemsakurai/gas-axe-puppeteer/issues"
   },
-  "homepage": "https://github.com/kemsakurai/gas-axe-puppeteer-firebase-functions-client#readme",
+  "homepage": "https://github.com/kemsakurai/gas-axe-puppeteer#readme",
   "devDependencies": {
     "@types/google-apps-script": "1.0.11",
     "@types/jest": "25.1.4",

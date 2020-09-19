@@ -1,8 +1,8 @@
 {
-  "initialSetting": "Initial setting",
+  "initialSetting": "Preferences",
   "gettingStart": "Getting start",
-  "createConfigSheets": "Create config sheets",
-  "settingURL": "Setting URL",
+  "createConfigSheets": "Create sheets",
+  "settingURL": "URL Settings",
   "execution": "Execution",
   "scheduleExecution": "Schedule Execution",
   "setAxePupeteetEndPointURL": "Set Axe Pupeteet End Point URL",
