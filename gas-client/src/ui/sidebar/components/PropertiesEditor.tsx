@@ -80,6 +80,13 @@ const PropertiesEditor = () => {
         return ' ';
     }
 
+    const getURLInputRef = () => {
+        return register({
+            required: true,
+            pattern: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi
+        });
+    }
+
     return (
         <div>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit(saveScriptProperties)}>
@@ -92,7 +99,7 @@ const PropertiesEditor = () => {
                     label="Firebase endpoint URL"
                     value={formDefaultValues.endPointURL}
                     variant="filled"
-                    inputRef={register({ required: true, pattern: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi })}
+                    inputRef={getURLInputRef()}
                     onChange={(e) =>
                         setFormDefaultValues({
                             firebaseFunctionsKey : formDefaultValues.firebaseFunctionsKey,
@@ -112,7 +119,7 @@ const PropertiesEditor = () => {
                     label="Target URL"
                     value={formDefaultValues.targetURL}
                     variant="filled"
-                    inputRef={register({ required: true, pattern: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi })}
+                    inputRef={getURLInputRef()}
                     onChange={(e) =>
                         setFormDefaultValues({
                             firebaseFunctionsKey : formDefaultValues.firebaseFunctionsKey,
