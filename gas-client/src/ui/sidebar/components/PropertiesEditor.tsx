@@ -87,6 +87,10 @@ const PropertiesEditor = () => {
         });
     }
 
+    const isTypeOfErrorRequiredOrPattern = (errors: FieldErrors<GetScriptPropertiesResult>,) => {
+        return errors.targetURL?.type == "required" || errors.targetURL?.type == "pattern";
+    }
+
     return (
         <div>
             <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit(saveScriptProperties)}>
@@ -106,7 +110,7 @@ const PropertiesEditor = () => {
                             targetURL: formDefaultValues.targetURL ,
                             endPointURL: e.target.value
                         })}
-                    error={errors.endPointURL?.type == "required" || errors.endPointURL?.type == "pattern"}
+                    error={isTypeOfErrorRequiredOrPattern(errors)}
                     helperText={getHelperTextForField(errors, 'Firebase endpoint URL')}
                 />
             </div>
@@ -126,7 +130,7 @@ const PropertiesEditor = () => {
                             targetURL: e.target.value ,
                             endPointURL: formDefaultValues.endPointURL
                         })}
-                    error={errors.targetURL?.type == "required" || errors.targetURL?.type == "pattern"}
+                    error={isTypeOfErrorRequiredOrPattern(errors)}
                     helperText={getHelperTextForField(errors, 'Target URL')}
                 />
             </div>
@@ -146,7 +150,7 @@ const PropertiesEditor = () => {
                                 targetURL: formDefaultValues.targetURL,
                                 endPointURL: formDefaultValues.endPointURL
                             })}
-                    error={errors.firebaseFunctionsKey?.type == "required" || errors.firebaseFunctionsKey?.type == "pattern"}
+                    error={isTypeOfErrorRequiredOrPattern(errors)}
                     helperText={getHelperTextForField(errors, 'API Key')}
                 />
             </div>

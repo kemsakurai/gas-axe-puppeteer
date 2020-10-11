@@ -54,6 +54,12 @@ export const runAxePuppeteer = functions.runWith(runtimeOpts).https.onRequest((r
             response.status(500).send("error: " + err);
         });
     } else {
-        response.status(403).send("不正なアクセスです");
+        let message;
+        if (functions.config().func.lang == "ja") {
+            message = "不正なアクセスです";
+        } else {
+            message = "Invalid access";
+        }
+        response.status(403).send(message);
     }
 });

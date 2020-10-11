@@ -1,6 +1,6 @@
 import i18n from "../libs/i18n";
 
-export const onOpen = () => {
+export const onOpen = (): void => {
   const ui = SpreadsheetApp.getUi();
   const menu = ui.createMenu("gas-axePuppeteerFirebaseFunctionsClient");
   menu
@@ -16,7 +16,7 @@ export const onOpen = () => {
     .addToUi();
 };
 
-export const openUrlSettings = () => {
+export const openUrlSettings = (): void => {
   const html = HtmlService.createHtmlOutputFromFile("sidebar")
     .setWidth(600)
     .setHeight(600);

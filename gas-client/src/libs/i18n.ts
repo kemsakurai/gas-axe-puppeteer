@@ -32,7 +32,7 @@ class Translations {
     return this._instance;
   }
 }
-const printf = function(params: string[]) {
+const printf = function(params: string[]): string {
   const num = params.length;
   let oStr = params[0];
   for (let i = 1; i < num; i++) {
