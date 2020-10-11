@@ -7,7 +7,6 @@ import * as locale_ja from 'axe-core/locales/ja.json';
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
-
 // リクエストヘッダーからTokenをパース
 const getAccessToken = function(header: any) : any {
     if (!header) return null;
